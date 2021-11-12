@@ -1,10 +1,12 @@
 # makefiles 🚧
 
-A guide to Makefiles. Designed for CPSC 213 at the University of British Columbia (UBC), but also hopefully more broadly applicable to other students. (I've read a lot of Makefile tutorials, and most of them are a bit confusing. So, hopefully this rendition is a bit clearly for undergraduates.) Now, without further ado,
+A guide to Makefiles. Designed for CPSC 213 at the University of British Columbia (UBC), but also hopefully more broadly applicable to other students. (I've read a lot of Makefile tutorials, and most of them are a bit confusing. So, hopefully this rendition is a bit clearly for undergraduates.) The content here is mostly just a more accessible version of [Chapter 2 of the `make` manual](https://www.gnu.org/software/make/manual/make.html#toc-An-Introduction-to-Makefiles), "An Introduction to Makefiles," with some extra tidbits here and there.
+
+Now, without further ado,
 
 <h2 style="text-align: center">A guide to GNU <code>make</code></h2>
 
-<p style="text-align: center">Table of Contents</p>
+<p style="text-align: left; font-weight: bold">Table of Contents</p>
 
 - [makefiles 🚧](#makefiles-)
   - [Motivations](#motivations)
@@ -13,8 +15,6 @@ A guide to Makefiles. Designed for CPSC 213 at the University of British Columbi
   - [Fancy Makefiles](#fancy-makefiles)
   - [Glossary](#glossary)
   - [Further Reading](#further-reading)
-
-The content here is mostly just a more accessible version of [Chapter 2 of the `make` manual](https://www.gnu.org/software/make/manual/make.html#toc-An-Introduction-to-Makefiles), "An Introduction to Makefiles," with some extra tid-bits here and there.
 
 ## Motivations
 
