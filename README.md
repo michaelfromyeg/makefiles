@@ -92,11 +92,16 @@ main: main.c
 kind-of cool isn't it? Though it's a bit unorthodox, we could even do this for a Java file. Running the `examples/java` file in VS Code gave some horrible command like
 
 ```shellscript
-$ /usr/bin/env /home/mdema/.sdkman/candidates/java/current/bin/java --enable-preview -XX:+ShowCodeDetailsInExceptionMessages -Dfile.encoding=UTF-8 -cp /home/mdema/.vscode-server/data/User/workspaceStorage/cd1681cbf16d44646f4b732fd6d07a6f/redhat.java/jdt_ws/makefiles_57addee4/bin examples.java.Main
+$ /usr/bin/env /home/mdema/.sdkman/candidates/java/current/bin/java \
+    --enable-preview \
+    -XX:+ShowCodeDetailsInExceptionMessages \
+    -Dfile.encoding=UTF-8 \
+    -cp /home/mdema/.vscode-server/data/[...]/bin \
+    examples.java.Main
 > Hello, world!
 ```
 
-Instead, try
+Imagine trying to memorize that! Instead, try
 
 ```shellscript
 $ make
@@ -127,7 +132,7 @@ something_else_other.o: something_else_other.c constants.h defs.h
     gcc -c something_else_other.c
 ```
 
-To create `main`, you would type `make` (or `make main`). Notice how `main` is just that, and not suffixed with a `.o`. We also use `-o` instead of `-c` to create an output file instead of an object file. This example nicely demonstrates the importance of prerequisites; if we edit `constants.h`, recompiling main will only recompile `something_else_other.o` before linkage, saving some computation time.
+To create `main`, you would type `make` (or `make main`). Notice how `main` is just that, and not suffixed with a `.o`. We also use `-o` instead of `-c` to create an object file instead of an object file. This example nicely demonstrates the importance of prerequisites; if we edit `constants.h`, recompiling main will only recompile `something_else_other.o` before linkage, saving some computation time.
 
 The first rule given is used by default, so it should be the "main" goal or executable produced by your program.
 
