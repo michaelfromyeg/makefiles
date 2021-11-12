@@ -4,9 +4,9 @@ A guide to Makefiles. Designed for CPSC 213 at the University of British Columbi
 
 Now, without further ado,
 
-<h2 style="text-align: center">A guide to GNU <code>make</code></h2>
+<h2 align="center" style="text-align: center">A guide to GNU <code>make</code></h2>
 
-<p style="text-align: left; font-weight: bold">Table of Contents</p>
+<p align="center" style="text-align: left; font-weight: bold">Table of Contents</p>
 
 - [makefiles 🚧](#makefiles-)
   - [Motivations](#motivations)
