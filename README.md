@@ -136,10 +136,10 @@ The first rule given is used by default, so it should be the "main" goal or exec
 It can be a bit tedious re-writing all these file names. Instead, it's common practice to throw them into a variable. The above example becomes.
 
 ```Makefile
-objects = something.o something_else.o something_else_other.o
+OBJECTS = something.o something_else.o something_else_other.o
 
-main: $(objects)
-    gcc -o main $(objects)
+main: $(OBJECTS)
+    gcc -o main $(OBJECTS)
 
 # etc.
 ```
@@ -147,10 +147,10 @@ main: $(objects)
 You'll also notice that we're manually stating `gcc -o main ...` in each of these, but we did not do that in our basic example. In fact, `make` has an implicit rule to use `cc -c` to compile object files from `.c` files. It's pretty nifty. Likewise, `make` also allows us to skip adding the `.c` file itself to its object file prerequisite. The above example simplifies to
 
 ```Makefile
-objects = something.o something_else.o something_else_other.o
+OBJECTS = something.o something_else.o something_else_other.o
 
-main: $(objects)
-    gcc -o main $(objects)
+main: $(OBJECTS)
+    gcc -o main $(OBJECTS)
 
 something.o: something.h defs.h
 something_else.o: defs.h
@@ -160,12 +160,12 @@ something_else_other.o: constants.h defs.h
 Notice how `defs.h` is a pre-requisite to all of our object files? There's more room for improvement here. We can group entries by their pre-requisites instead. This yields
 
 ```Makefile
-objects = something.o something_else.o something_else_other.o
+OBJECTS = something.o something_else.o something_else_other.o
 
-main: $(objects)
-    gcc -o main $(objects)
+main: $(OBJECTS)
+    gcc -o main $(OBJECTS)
 
-$(objects): defs.h
+$(OBJECTS): defs.h
 something.o: something.h
 something_else_other.o: constants.h
 ```
@@ -175,19 +175,19 @@ Last thing before we wrap up—running these commands will leave a lot of unwant
 We get
 
 ```Makefile
-objects = something.o something_else.o something_else_other.o
+OBJECTS = something.o something_else.o something_else_other.o
 
-main: $(objects)
-    gcc -o main $(objects)
+main: $(OBJECTS)
+    gcc -o main $(OBJECTS)
 
-$(objects): defs.h
+$(OBJECTS): defs.h
 something.o: something.h
 something_else_other.o: constants.h
 
 .PHONY: clean
 
 clean:
-    rm main $(objects)
+    rm main $(OBJECTS)
 ```
 
 ## Fancy Makefiles
@@ -196,7 +196,7 @@ What if we want to add some command line options to our `gcc` call? For example,
 
 ```Makefile
 CC = gcc
-CFLAGS = -I -std=gnu11 -Wall
+CFLAGS = -I . -std=gnu11 -Wall
 
 objects = something.o something_else.o something_else_other.o
 
@@ -212,7 +212,7 @@ Remember the earlier example where we wanted to pull out `defs.h` from each of o
 
 ```Makefile
 CC = gcc
-CFLAGS = -I -std=gnu11 -Wall
+CFLAGS = -I . -std=gnu11 -Wall
 
 OBJECTS = something.o something_else.o something_else_other.o
 DEPS = defs.h
@@ -220,8 +220,8 @@ DEPS = defs.h
 %.o: %.c $(DEPS)
     $(CC) -c $(CFLAGS)
 
-main: $(objects)
-    $(CC) -o main $(objects)
+main: $(OBJECTS)
+    $(CC) -o main $(OBJECTS)
 
 # etc.
 ```
@@ -231,12 +231,12 @@ This fancy `%.o` rule says all object files depend on their respective `.c` file
 For a final step, let's add directories. What if our `.h` files are in an `include/` directory, our source code lives in a `src/` folder, we have local libraries in a `lib/` folder, and we want to stuff our object files into an output directory. Here's what that would look like.
 
 ```Makefile
-CC = gcc
-CFLAGS = -I $(IDIR) -std=gnu11 -Wall
-
 IDIR = ../include
 ODIR = obj
 LDIR = ../lib
+
+CC = gcc
+CFLAGS = -I $(IDIR) -std=gnu11 -Wall
 
 LIBS = -lm
 
@@ -265,7 +265,7 @@ There are a few extra oddities in this snippet. There are a few [automatic varia
 
 With the above information and the knowledge in the rest of this guide, try to break down what happens above for yourself as an exercise!
 
-This file comes courtesy of [Bruce Maxwell of Colby College](https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/).
+This file comes courtesy of [Bruce Maxwell of Colby College](https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/). If you try to re-use it, you may need to tweak the file paths a bit!
 
 That's all for this Makefiles guide. Hope you enjoyed!
 
