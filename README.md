@@ -6,7 +6,7 @@ Now, without further ado,
 
 <h2 align="center" style="text-align: center">A guide to GNU <code>make</code></h2>
 
-<p align="center" style="text-align: left; font-weight: bold">Table of Contents</p>
+<p align="left" style="text-align: left; font-weight: bold">Table of Contents</p>
 
 - [makefiles 🚧](#makefiles-)
   - [Motivations](#motivations)
