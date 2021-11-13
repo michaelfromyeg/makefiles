@@ -203,10 +203,10 @@ What if we want to add some command line options to our `gcc` call? For example,
 CC = gcc
 CFLAGS = -I . -std=gnu11 -Wall
 
-objects = something.o something_else.o something_else_other.o
+OBJECTS = something.o something_else.o something_else_other.o
 
-main: $(objects)
-    $(CC) -o main $(objects)
+main: $(OBJECTS)
+    $(CC) -o main $(OBJECTS)
 
 # etc.
 ```
